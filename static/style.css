@@ -1,0 +1,20 @@
+.mbox{
+    margin: auto;
+    width: 80%;
+    position: relative;
+}
+.mbox-ans{
+    margin: auto;
+    width: 80%;
+    position: relative;
+}
+.ans{
+    color: red;
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+}
+a, a:hover, a:focus, a:active {
+     text-decoration: none !important;
+     color: inherit !important;
+ }

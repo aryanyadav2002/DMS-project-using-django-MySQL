@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% block title %}dgbb{% endblock title %}
+{% block body %}
+<br>
+  <div class="mbox" >
+    <img src="/static/bearing img.webp" class="img-fluid" alt="Bearing Image">
+  </div>
+  <br>
+<br>
+
+<div class="mbox p-4 border border-primary rounded-5 ">
+  <form action="/dgbb" method="post">
+    {% csrf_token %}
+    
+    <div class="form-group">
+      <label for="formGroupExampleInput">Shaft Dia. (d) in mm</label>
+      <input name='dia' type="number" step="any" class="form-control" id="formGroupExampleInput" placeholder="Shaft Dia." required>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">N rpm</label>
+      <input name='rpm' type="number" step="any" class="form-control" id="formGroupExampleInput2" placeholder="N rpm" required>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Radial Load (Fr) in N</label>
+      <input name='rload' type="number" step="any" class="form-control" id="formGroupExampleInput" placeholder="Radial Load" required>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Axial Load (Fa) in N</label>
+      <input name='aload' type="number" step="any" class="form-control" id="formGroupExampleInput2" placeholder="Axial Load" required>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Load Factor (Ka)</label>
+      <input name='lfactor' type="number" step="any" class="form-control" id="formGroupExampleInput" placeholder="Load Factor" required>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Expected Life of Bearing in Hours</label>
+      <input name='elife' type="number" step="any" class="form-control" id="formGroupExampleInput2" placeholder="Expected Life of Bearing" required>
+    </div>
+    <br>
+    <div class="form-group">
+      <a><button onclick="myFunction()" type="submit" class="btn btn-primary">Submit</button></a>
+    </div>
+  </form>
+</div>
+<br>
+<div id='ansdiv'>
+  <div class="mbox border border-success rounded-5 ">
+    <div class="mbox-ans p-2">{{op}}
+
+    </div>
+    <hr>
+    <h1 class="p-2 ans">{{skf}}</h1>
+    <hr>
+    <div class="mbox">
+      <table class="table table-bordered">
+      
+        <tbody>
+          <tr>
+            <th scope="row">{{skf}}</th>
+            <td>{{skf}}</td>
+          </tr>
+          <tr>
+            <th scope="row">{{dr}}</th>
+            <td>{{d}}</td>
+          </tr>
+          <tr>
+            <th scope="row">{{d1r}}</th>
+            <td>{{D1}}</td>
+          </tr>
+          <tr>
+            <th scope="row">{{drr}}</th>
+            <td>{{D}}</td>
+          </tr>
+          <tr>
+            <th scope="row">{{d2r}}</th>
+            <td>{{D2}}</td>
+          </tr>
+          <tr>
+            <th scope="row">{{br}}</th>
+            <td>{{B}}</td>
+          </tr>
+          <tr>
+            <th scope="row">{{rr}}</th>
+            <td>{{r}}</td>
+          </tr>
+          <tr>
+            <th scope="row">{{r1r}}</th>
+            <td>{{r1}}</td>
+          </tr>
+          <tr>
+            <th scope="row">{{cor}}</th>
+            <td>{{co}}</td>
+          </tr>
+          <tr>
+            <th scope="row">{{cr}}</th>
+            <td>{{c}}</td>
+          </tr>
+          <tr>
+            <th scope="row">{{spr}}</th>
+            <td>{{sp}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <br>
+  </div>
+  <script>
+  function myFunction() {
+    var x = document.getElementById("ansdiv");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } 
+  }
+  </script>
+  <br>
+  
+  <br>
+
+  <div class="mbox">
+    <h1 class="display-4">{{cal}}</h1>
+    <ol class="list-group list-group-numbered">
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">{{t1}}</div>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th scope="row">{{fbc}}</th>
+                <td>{{fbca}}</td>
+              </tr>
+              <tr>
+                <th scope="row">{{fafr}}</th>
+                <td>{{fafra}}</td>
+              </tr>
+              <tr>
+                <th scope="row">{{echk}}</th>
+              </tr>
+              <tr>
+                <th scope="row">{{xx}}</th>
+                <td>{{xxa}}</td>
+              </tr>
+              <tr>
+                <th scope="row">{{yy}}</th>
+                <td>{{yya}}</td>
+              </tr>
+            </tbody>
+          </table>  
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">{{t2}}
+          </div>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th scope="row">{{pes}}</th>
+                <td>{{pea}}</td>
+              </tr>
+            </tbody>
+          </table>  
+        </div>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">{{t3}}
+          </div>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th scope="row">{{l10}}</th>
+                <td>{{l10a}}</td>
+              </tr>
+              <tr>
+                <th scope="row">{{cd}}</th>
+                <td>{{cda}}</td>
+              </tr>
+            </tbody>
+          </table>  
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>
+<br>
+<br>
+{% endblock body %}
